@@ -1,0 +1,26 @@
+sitemap casa_noastra label="Casa Noastra" {
+    Frame label="Parter" icon="groundfloor" {
+        Group item=GF_LivingRoom
+        Group item=GF_Dining
+        Group item=GF_Kitchen
+        Group item=GF_Toilet
+        Group item=GF_Boiler
+        Group item=GF_Entryway
+        Group item=GF_Corridor
+        Group item=GF_Garage
+        Group item=GF_Stairwell
+    }
+
+    Frame label="Etaj" icon="firstfloor" {
+        Group item=FF_FamilyRoom
+        Group item=FF_Bedroom
+        Group item=FF_KidsRoom
+        Group item=FF_Office
+        Group item=FF_Bathroom
+        Group item=FF_Wardrobe
+        Group item=FF_Stairwell
+    }
+    Frame label="Alte informatii" {
+        Default item=ntpDate label="Data"
+    }
+}

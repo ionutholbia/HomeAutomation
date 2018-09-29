@@ -1,0 +1,75 @@
+Group           Home                        "Casa Noastra"     <house>
+
+Group           GF                          "Parter"           <groundfloor>        (Home)
+Group           FF                          "Etaj"             <firstfloor>         (Home)
+
+Group           GF_LivingRoom               "Living"           <sofa>               (Home, GF)
+Group           GF_Dining                   "Dining"                                (Home, GF)
+Group           GF_Kitchen                  "Bucatarie"        <kitchen>            (Home, GF)
+Group           GF_Toilet                   "Toaleta"          <toilet>             (Home, GF)
+Group           GF_Boiler                   "Camera Tehnica"   <gas>                (Home, GF)
+Group           GF_Entryway                 "Intrare"          <frontdoor>          (Home, GF)
+Group           GF_Corridor                 "Hol"              <corridor>           (Home, GF)
+Group           GF_Garage                   "Garaj"            <garage>             (Home, GF)
+Group           GF_Stairwell                "Scari"            <qualityofservice>   (Home, GF)
+Group           FF_FamilyRoom               "Family Room"      <parents_2_4>        (Home, FF)
+Group           FF_Bedroom                  "Dormitor Matrimonial"  <bedroom>            (Home, FF)
+Group           FF_KidsRoom                 "Dormitor Copii"        <girl_3>             (Home, FF)
+Group           FF_Office                   "Birou"            <office>             (Home, FF)
+Group           FF_Bathroom                 "Baie"             <bath>               (Home, FF)
+Group           FF_Wardrobe                 "Garderoba"        <wardrobe>           (Home, FF)
+Group           FF_Stairwell                "Scari"            <qualityofservice>   (Home, FF)
+
+Dimmer          GF_LivingRoom_Light         "Lumini"           <light>              (GF_LivingRoom, gLight)            {channel=""}
+Switch          GF_LivingRoom_Power_TV      "Priza TV"         <poweroutlet>        (GF_LivingRoom, gPower)            {channel=""}
+Number          GF_LivingRoom_Heating       "Incalzire"        <heating>            (GF_LivingRoom, gHeating)          {channel=""}
+Number          GF_LivingRoom_Temperature   "Temperatura [%.1f °C]"      <temperature>        (GF_LivingRoom, gTemperature)      {channel=""}
+Rollershutter   GF_LivingRoom_Shutter       "Rulouri"          <rollershutter>      (GF_LivingRoom, gShutter)          {channel=""}
+Dimmer          GF_Dining_Light             "Lumini"           <light>              (GF_Dining, gLight)                {channel=""}
+Dimmer          GF_Kitchen_Light            "Lumini"           <light>              (GF_Kitchen, gLight)               {channel=""}
+Switch          GF_Kitchen_Power_Coffee     "Priza Expresor"   <poweroutlet>        (GF_Kitchen, gPower)               {channel=""}
+Switch          GF_Kitchen_Power_Tee        "Priza Fierbator"  <poweroutlet>        (GF_Kitchen, gPower)               {channel=""}
+Switch          GF_Toilet_Light             "Lumini"           <light>              (GF_Toilet, gLight)                {channel=""}
+Switch          GF_Toilet_Power             "Prize"            <poweroutlet>        (GF_Toilet, gPower)                {channel=""}
+Switch          GF_Boiler_Light             "Lumini"           <light>              (GF_Boiler, gLight)                {channel=""}
+Switch          GF_Entryway_Light           "Lumini"           <light>              (GF_Entryway, gLight)              {channel=""}
+Switch          GF_Corridor_Light           "Lumini"           <light>              (GF_Corridor, gLight)              {channel=""}
+Switch          GF_Garage_Light             "Lumini"           <light>              (GF_Garage, gLight)                {channel=""}
+Rollershutter   GF_Garage_Door              "Usa"              <door>               (GF_Garage, gDoor)                 {channel=""}
+Switch          GF_Stairwell_Light          "Lumini"           <light>              (GF_Stairwell, gLight)             {channel=""}
+Dimmer          FF_FamilyRoom_Light         "Lumini"           <light>              (FF_FamilyRoom, gLight)            {channel=""}
+Number          FF_FamilyRoom_Heating       "Incalzire"        <heating>            (FF_FamilyRoom, gHeating)          {channel=""}
+Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"      <temperature>        (FF_FamilyRoom, gTemperature)      {channel=""}
+Switch          FF_FamilyRoom_Power         "Priza"            <poweroutlet>        (FF_FamilyRoom, gPower)            {channel=""}
+Dimmer          FF_FamilyRoom_Blind         "Jaluzele"         <blinds>             (FF_FamilyRoom, gBlind)            {channel=""}
+Dimmer          FF_Bedroom_Light            "Lumini"           <light>              (FF_Bedroom, gLight)               {channel=""}
+Number          FF_Bedroom_Heating          "Incalzire"        <heating>            (FF_Bedroom, gHeating)             {channel=""}
+Number          FF_Bedroom_Temperature      "Temperatura [%.1f °C]"      <temperature>        (FF_Bedroom, gTemperature)         {channel=""}
+Switch          FF_Bedroom_Power            "Prize Pat"        <poweroutlet>        (FF_Bedroom, gPower)               {channel=""}
+Dimmer          FF_Bedroom_Blind            "Jaluzele"         <blinds>             (FF_Bedroom, gBlind)               {channel=""}
+Dimmer          FF_KidsRoom_Light           "Lumini"           <light>              (FF_KidsRoom, gLight)              {channel=""}
+Number          FF_KidsRoom_Heating         "Incalzire"        <heating>            (FF_KidsRoom, gHeating)            {channel=""}
+Number          FF_KidsRoom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_KidsRoom, gTemperature)        {channel=""}
+Dimmer          FF_KidsRoom_Blind           "Jaluzele"         <blinds>             (FF_KidsRoom, gBlind)              {channel=""}
+Switch          FF_KidsRoom_Power           "Prize"            <poweroutlet>        (FF_KidsRoom, gPower)              {channel=""}
+Dimmer          FF_Office_Light             "Lumini"           <light>              (FF_Office, gLight)                {channel=""}
+Number          FF_Office_Heating           "Incalzire"        <heating>            (FF_Office, gHeating)              {channel=""}
+Number          FF_Office_Temperature       "Temperatura [%.1f °C]"      <temperature>        (FF_Office, gTemperature)          {channel=""}
+Switch          FF_Office_Power             "Prize"            <poweroutlet>        (FF_Office, gPower)                {channel=""}
+Dimmer          FF_Office_Blind             "Jaluzele"         <blinds>             (FF_Office, gBlind)                {channel=""}
+Switch          FF_Bathroom_Light           "Lumini"           <light>              (FF_Bathroom, gLight)              {channel=""}
+Number          FF_Bathroom_Heating         "Incalzire"        <heating>            (FF_Bathroom, gHeating)            {channel=""}
+Number          FF_Bathroom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_Bathroom, gTemperature)        {channel=""}
+Switch          FF_Bathroom_Power           "Prize"            <poweroutlet>        (FF_Bathroom, gPower)              {channel=""}
+Switch          FF_Wardrobe_Light           "Lumini"           <light>              (FF_Wardrobe, gLight)              {channel=""}
+Switch          FF_Stairwell_Light          "Lumini"           <light>              (FF_Stairwell, gLight)             {channel=""}
+
+DateTime ntpDate  "Date  [%1$td.%1$tm.%1$tY %1$tH:%1$tM]" {channel="ntp:ntp:0c087ba0:dateTime",knx="0/0/22"}
+
+
+Group:Switch:OR(ON, OFF)           gLight         "Lumini"            <light>           (Home)
+Group:Switch:OR(ON, OFF)           gPower         "Priza"             <poweroutlet>     (Home)
+Group:Number:AVG                   gHeating       "Incalzire"         <heating>         (Home)
+Group:Number                       gTemperature   "Temperatura [%.1f °C]"       <temperature>     (Home)
+Group:Rollershutter:OR(UP, DOWN)   gShutter       "Rulouri"           <rollershutter>   (Home)
+Group:Dimmer                       gBlind         "Jaluzele"          <blinds>          (Home)
