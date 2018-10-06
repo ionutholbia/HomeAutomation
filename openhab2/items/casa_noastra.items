@@ -21,7 +21,7 @@ Group           FF_Wardrobe                 "Garderoba"        <wardrobe>       
 Group           FF_Stairwell                "Scari"            <qualityofservice>   (Home, FF)
 
 Dimmer          GF_LivingRoom_Light         "Lumini [%d %%]"           <light>              (GF_LivingRoom, gLight)  { channel="knx:device:bridge:gf_mdt_4xdimmer:channelA" }          
-Switch          GF_LivingRoom_Power_TV      "Priza TV"         <poweroutlet>        (GF_LivingRoom, gPower)           
+Switch          GF_LivingRoom_Power_TV      "Priza TV"         <poweroutlet>        (GF_LivingRoom, gPower)  { channel="knx:device:bridge:gf_mdt_glass_sensor:dayMode" }         
 Number          GF_LivingRoom_Heating       "Incalzire"        <heating>            (GF_LivingRoom, gHeating)          
 Number          GF_LivingRoom_Temperature   "Temperatura [%.1f °C]"      <temperature>        (GF_LivingRoom, gTemperature) { channel="knx:device:bridge:gf_mdt_glass_sensor:temperature" }      
 Rollershutter   GF_LivingRoom_Shutter       "Rulouri"          <rollershutter>      (GF_LivingRoom, gShutter)          
@@ -64,7 +64,12 @@ Switch          FF_Bathroom_Power           "Prize"            <poweroutlet>    
 Switch          FF_Wardrobe_Light           "Lumini"           <light>              (FF_Wardrobe, gLight)              
 Switch          FF_Stairwell_Light          "Lumini"           <light>              (FF_Stairwell, gLight)             
 
-DateTime GF_SWITCH_LIVING_DATETIME "[%1$tA, %1$td.%1$tm.%1$tY %1$tT]" {channel="ntp:ntp:local:dateTime,knx:device:bridge:gf_mdt_glass_sensor:datetime"}
+DateTime        GF_SWITCH_LIVING_DATETIME   "[%1$tA, %1$td.%1$tm.%1$tY %1$tT]" {channel="ntp:ntp:local:dateTime,knx:device:bridge:gf_mdt_glass_sensor:datetime"}
+DateTime        SunsetTime                  "Apus [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:set#start" }
+DateTime        SunriseTime                 "Rasarit [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:rise#end" }
+Number          SunElevation                "Elevatia Soarelui [%.1f °]"  <sun>  (Astro) { channel="astro:sun:home:position#elevation" }
+
+Switch          DayModeSwitch                { channel="knx:device:bridge:gf_mdt_glass_sensor:dayMode" }
 
 Group:Switch:OR(ON, OFF)           gLight         "Lumini"            <light>           (Home)
 Group:Switch:OR(ON, OFF)           gPower         "Priza"             <poweroutlet>     (Home)

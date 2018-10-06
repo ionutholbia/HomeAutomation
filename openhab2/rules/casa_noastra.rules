@@ -1,0 +1,15 @@
+
+rule "KNX Send Day/Night"
+when
+	Item GF_SWITCH_LIVING_DATETIME received update
+then
+    if (now.isAfter((SunsetTime.state as DateTimeType).calendar.timeInMillis) ||
+        now.isBefore((SunriseTime.state as DateTimeType).calendar.timeInMillis)
+    ) {
+        logInfo("astro", "Night mode enabled!")
+        sendCommand(DayModeSwitch, OFF)
+    } else {
+        logInfo("astro", "Night mode enabled!")
+        sendCommand(DayModeSwitch, ON)
+    }
+end

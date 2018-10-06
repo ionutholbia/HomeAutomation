@@ -6,7 +6,7 @@ Bridge knx:ip:bridge [
     readingPause=50, 
     responseTimeout=10, 
     readRetriesLimit=3, 
-    autoReconnectPeriod=1,
+    autoReconnectPeriod=60,
     localSourceAddr="1.1.254"
 ] {
     Thing device gf_mdt_4xdimmer "GF MDT 4x Dimmer"[
@@ -25,7 +25,11 @@ Bridge knx:ip:bridge [
         pingInterval=300,
         readInterval=3600
     ] {
-        Type number        : temperature   "TempSensor"  [ ga="0/0/21" ]
-        Type datetime-control : datetime  "DateTimeSender" [ ga="19.001:0/0/22" ]
+        Type number             : temperature   "TempSensor"        [ ga="0/0/21" ]
+        Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/0/22" ]
+        Type switch             : dayMode       "DayMode"           [ ga="<0/0/23" ]
     }
 }
+
+astro:sun:home  [ geolocation="47.097712, 27.631192", interval=300]
+astro:moon:home [ geolocation="47.097712, 27.631192", interval=300]

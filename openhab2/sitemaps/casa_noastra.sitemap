@@ -22,5 +22,8 @@ sitemap casa_noastra label="Casa Noastra" {
     }
     Frame label="Alte informatii" {
         Default item=GF_SWITCH_LIVING_DATETIME label="Data"
+        Default item=SunsetTime label="Apusul"
+        Default item=SunriseTime label="Rasaritul"
+        Default item=SunElevation label="Elevatia soarelui"
     }
 }
