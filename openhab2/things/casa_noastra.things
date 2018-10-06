@@ -1,0 +1,31 @@
+Bridge knx:ip:bridge [ 
+    ipAddress="192.168.2.151", 
+    portNumber=3671, 
+    localIp="192.168.2.104", 
+    type="TUNNEL", 
+    readingPause=50, 
+    responseTimeout=10, 
+    readRetriesLimit=3, 
+    autoReconnectPeriod=1,
+    localSourceAddr="1.1.254"
+] {
+    Thing device gf_mdt_4xdimmer "GF MDT 4x Dimmer"[
+        address="1.1.2",
+        fetch=true,
+        pingInterval=300,
+        readInterval=3600
+    ] {
+        Type dimmer        : channelA   "ChannelA"      [ switch="0/0/1", position="0/0/4", increaseDecrease="0/0/3" ]
+        Type dimmer        : channelB   "ChannelB"      [ switch="0/0/6", position="0/0/9", increaseDecrease="0/0/8" ]
+    }
+
+    Thing device gf_mdt_glass_sensor "GF MDT GLASS SENSOR CONTROL"[
+        address="1.1.3",
+        fetch=true,
+        pingInterval=300,
+        readInterval=3600
+    ] {
+        Type number        : temperature   "TempSensor"  [ ga="0/0/21" ]
+        Type datetime-control : datetime  "DateTimeSender" [ ga="19.001:0/0/22" ]
+    }
+}

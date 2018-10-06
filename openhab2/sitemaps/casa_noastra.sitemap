@@ -21,6 +21,6 @@ sitemap casa_noastra label="Casa Noastra" {
         Group item=FF_Stairwell
     }
     Frame label="Alte informatii" {
-        Default item=ntpDate label="Data"
+        Default item=GF_SWITCH_LIVING_DATETIME label="Data"
     }
 }
