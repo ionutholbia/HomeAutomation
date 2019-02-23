@@ -29,6 +29,11 @@ Bridge knx:ip:bridge [
         Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/0/22" ]
         Type switch             : dayMode       "DayMode"           [ ga="<0/0/23" ]
     }
+
+    Bridge hue:bridge:1         "Hue Bridge"     [ ipAddress="192.168.2.30" ] {
+        0210 diningBulb1        "Dining Lamp 1"        @ "Dining"      [ lightId="1" ]
+        0210 diningBulb2        "Dining Lamp 2"        @ "Dining"      [ lightId="2" ]
+    }
 }
 
 astro:sun:home  [ geolocation="47.097712, 27.631192", interval=300]

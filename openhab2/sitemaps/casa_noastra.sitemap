@@ -4,11 +4,10 @@ sitemap casa_noastra label="Casa Noastra" {
         Group item=GF_Dining
         Group item=GF_Kitchen
         Group item=GF_Toilet
-        Group item=GF_Boiler
-        Group item=GF_Entryway
         Group item=GF_Corridor
         Group item=GF_Garage
         Group item=GF_Stairwell
+        Default item=GF_Temperature
     }
 
     Frame label="Etaj" icon="firstfloor" {

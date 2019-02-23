@@ -13,3 +13,15 @@ then
         sendCommand(DayModeSwitch, ON)
     }
 end
+
+rule "Dining Hue 1"
+when
+	Item GF_Dining_Hue1_Dimmer received update
+then
+    if (! (GF_Dining_Hue1_Dimmer.state instanceof Number))
+    {
+        return;
+    }
+    val dimmerValue = GF_Dining_Hue1_Dimmer.state as Number  
+    logInfo("hue", "DIMMING STATE: " + dimmerValue)
+end
