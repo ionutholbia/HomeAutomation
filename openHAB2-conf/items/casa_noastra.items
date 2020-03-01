@@ -4,110 +4,130 @@ Group           GF                          "Parter"           <groundfloor>    
 Group           FF                          "Etaj"             <firstfloor>         (Home)
 
 Group           GF_LivingRoom               "Living"           <sofa>               (Home, GF)
-Group           GF_Dining                   "Dining"                                (Home, GF)
+Group           GF_Dining                   "Dining"            <party>                (Home, GF)
 Group           GF_Kitchen                  "Bucatarie"        <kitchen>            (Home, GF)
-Group           GF_Toilet                   "Toaleta"          <toilet>             (Home, GF)
-Group           GF_Corridor                 "Hol"              <corridor>           (Home, GF)
-Group           GF_Garage                   "Garaj"            <garage>             (Home, GF)
-Group           GF_Stairwell                "Scari"            <qualityofservice>   (Home, GF)
 Group           FF_FamilyRoom               "Family Room"      <parents_2_4>        (Home, FF)
-Group           FF_Bedroom                  "Dormitor Matrimonial"  <bedroom>            (Home, FF)
-Group           FF_KidsRoom                 "Dormitor Copii"        <girl_3>             (Home, FF)
+Group           FF_Bedroom                  "Dormitor Matrimonial"  <bedroom>       (Home, FF)
+Group           FF_KidsRoom                 "Dormitor Copii"        <girl_3>        (Home, FF)
 Group           FF_Office                   "Birou"            <office>             (Home, FF)
 Group           FF_Bathroom                 "Baie"             <bath>               (Home, FF)
 Group           FF_Wardrobe                 "Garderoba"        <wardrobe>           (Home, FF)
 Group           FF_Stairwell                "Scari"            <qualityofservice>   (Home, FF)
+Group           Heating                     "Incalzire"        <heating>            (Home)
 
-///////////////////
+//////////////////////////////////////
 // GF Lining room
-///////////////////
-
-// Philips hue
-Dimmer  GF_LivingRoom_HueLampTV_Dimmer    "Hue Lamp TV"         <light> (GF_LivingRoom, gLight)
-Dimmer  GF_LivingRoom_HueLampSofa_Dimmer  "Hue Lamp Canapea"    <light> (GF_LivingRoom, gLight)
-
-Dimmer          GF_LivingRoom_Light         "Lumini tavan"     <light>              (GF_LivingRoom, gLight)  { channel="knx:device:bridge:gf_mdt_4xdimmer:channelA" }          
-Number          GF_LivingRoom_Heating       "Incalzire"        <heating>            (GF_LivingRoom, gHeating)          
-Dimmer          GF_LivingRoom_Shutter       "Rulouri"          <blinds>             (GF_LivingRoom, gBlind)   
+//////////////////////////////////////
 
 
-///////////////////
+Switch  GF_LivingRoom_HueLampSofa_Dimmer        "Aplici Perete"     <light>       (GF_LivingRoom, gLight)
+Switch  GF_LivingRoom_Light                     "Lumini tavan"      <light>       (GF_LivingRoom, gLight) { channel="knx:device:bridge:gf_mdt_universal:channelK" }         
+Rollershutter  GF_LivingRoom_Shutter_Window     "Rulou Geam [%d %%]"        <rollershutter>     (GF_LivingRoom, gShutter) { channel="knx:device:bridge:gf_mdt_universal:channelCD" }   
+Rollershutter  GF_LivingRoom_Shutter_Door       "Rulou Deschidere [%d %%]"  <rollershutter>     (GF_LivingRoom, gShutter) { channel="knx:device:bridge:gf_mdt_universal:channelGH" }   
+
+
+//////////////////////////////////////
 // GF Dinning
-///////////////////
+//////////////////////////////////////
 
 // Philips hue
-Dimmer  GF_Dining_Hue1_Dimmer    "Hue 1"         (GF_Dining, gLight)    { channel="hue:0210:1:diningBulb1:color" }
-Color   GF_Dining_Hue1_Color     "Hue 1 Color"   (GF_Dining, gLight)    { channel="hue:0210:1:diningBulb1:color" }
-Dimmer  GF_Dining_Hue2_Dimmer    "Hue 2"         (GF_Dining, gLight)   
-Color   GF_Dining_Hue2_Color     "Hue 2 Color"   (GF_Dining, gLight)   
+/*Dimmer  GF_Dining_Hue1_Dimmer    "Bec 1"         (GF_Dining, gLight)    { channel="hue:0210:1:diningBulb1:color" }
+Color   GF_Dining_Hue1_Color     "Bec 1 Color"   (GF_Dining, gLight)    { channel="hue:0210:1:diningBulb1:color" }
+Dimmer  GF_Dining_Hue2_Dimmer    "Bec 2"         (GF_Dining, gLight)   
+Color   GF_Dining_Hue2_Color     "Bec 2 Color"   (GF_Dining, gLight)*/  
 
-Dimmer  GF_Dining_Shutter        "Rulouri"        <blinds>              (GF_Dining, gBlind)   
+Switch         GF_Dining_Light              "Lumini"                    <light>             (GF_Dining, gLight) { channel="knx:device:bridge:gf_mdt_universal:channelL" }          
+Rollershutter  GF_Dining_Shutter_Window     "Rulou Geam [%d %%]"        <rollershutter>     (GF_Dining, gShutter) { channel="knx:device:bridge:gf_mdt_universal:channelAB" }   
+Rollershutter  GF_Dining_Shutter_Door       "Rulou Deschidere [%d %%]"  <rollershutter>     (GF_Dining, gShutter) { channel="knx:device:bridge:gf_mdt_universal:channelEF" }   
 
 
-///////////////////
+//////////////////////////////////////
 // GF Kitchen
-///////////////////
+//////////////////////////////////////
 
-Dimmer          GF_Kitchen_Light            "Lumini [%d %%]"   <light>              (GF_Kitchen, gLight) { channel="knx:device:bridge:gf_mdt_4xdimmer:channelB" }           
-Switch          GF_Kitchen_Power            "Prize Fierbator/Expresor"   <poweroutlet>        (GF_Kitchen, gPower)   
+Switch         GF_Kitchen_Light            "Lumini"            <light>             (GF_Kitchen, gLight) { channel="knx:device:bridge:gf_mdt_universal:channelM" }          
+Rollershutter  GF_Kitchen_Shutter          "Rulou [%d %%]"     <rollershutter>     (GF_Kitchen, gShutter) { channel="knx:device:bridge:gf_mdt_universal:channelIJ" }   
 
-///////////////////
-// GF Toilet
-///////////////////
-
-Switch          GF_Toilet_Light             "Lumini"           <light>              (GF_Toilet, gLight) 
-
-///////////////////
-// GF Corridor
-///////////////////
-
-Switch          GF_Entrance_Light           "Intrare"          <light>              (GF_Corridor, gLight) 
-Switch          GF_Corridor_Light           "Coridor"          <light>              (GF_Corridor, gLight)      
-
-///////////////////
-// GF Garage
-///////////////////
-
-Switch          GF_Garage_Light             "Lumini"           <light>              (GF_Garage, gLight)                
-Rollershutter   GF_Garage_Door              "Usa"              <door>               (GF_Garage, gDoor) 
+//////////////////////////////////////
+// GF General
+//////////////////////////////////////   
 
 
-Switch          GF_Stairwell_Light          "Lumini"           <light>              (GF_Stairwell, gLight)             
+Switch          GF_Stairwell_Light  "Lumini Scari"               <qualityofservice>         
+Number          GF_Temperature      "Temperatura [%.1f °C]"      <temperature>  { channel="knx:device:bridge:gf_mdt_push_smart_living:temperature" }    
+Number          GF_Heating          "Incalzire"                  <heating>                  
+Switch          GF_Toilet_Light     "Lumini Toaleta [%s]"        <toilet> { channel="knx:device:bridge:gf_siemens_switch:channelA" }         
+Switch          GF_Entrance_Light   "Intrare [%s]"               <light>  { channel="knx:device:bridge:gf_siemens_switch:channelD" }
+Switch          GF_Corridor_Light   "Coridor [%s]"               <light>  { channel="knx:device:bridge:gf_siemens_switch:channelC" }
+
+//////////////////////////////////////
+// FF Fam Room
+//////////////////////////////////////
+
 Dimmer          FF_FamilyRoom_Light         "Lumini [%d %%]"           <light>              (FF_FamilyRoom, gLight)            
 Number          FF_FamilyRoom_Heating       "Incalzire"        <heating>            (FF_FamilyRoom, gHeating)          
-Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"      <temperature>        (FF_FamilyRoom, gTemperature)      
+Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"      <temperature>        (FF_FamilyRoom, gTemperature) { channel="knx:device:bridge:ff_mdt_push_smart_fam:temperature" }      
 Switch          FF_FamilyRoom_Power         "Priza"            <poweroutlet>        (FF_FamilyRoom, gPower)            
-Dimmer          FF_FamilyRoom_Blind         "Jaluzele"         <blinds>             (FF_FamilyRoom, gBlind)            
+Dimmer          FF_FamilyRoom_Blind         "Jaluzele"         <blinds>             (FF_FamilyRoom, gBlind)      
+
+//////////////////////////////////////
+// FF MBed
+//////////////////////////////////////
+
 Dimmer          FF_Bedroom_Light            "Lumini"           <light>              (FF_Bedroom, gLight)               
 Number          FF_Bedroom_Heating          "Incalzire"        <heating>            (FF_Bedroom, gHeating)             
-Number          FF_Bedroom_Temperature      "Temperatura [%.1f °C]"      <temperature>        (FF_Bedroom, gTemperature)         
+Number          FF_Bedroom_Temperature      "Temperatura [%.1f °C]"      <temperature>        (FF_Bedroom, gTemperature) { channel="knx:device:bridge:ff_mdt_push_smart_mbed:temperature" }         
 Switch          FF_Bedroom_Power            "Prize Pat"        <poweroutlet>        (FF_Bedroom, gPower)               
-Dimmer          FF_Bedroom_Blind            "Jaluzele"         <blinds>             (FF_Bedroom, gBlind)               
+Dimmer          FF_Bedroom_Blind            "Jaluzele"         <blinds>             (FF_Bedroom, gBlind)  
+
+//////////////////////////////////////
+// FF Children
+//////////////////////////////////////
+
 Dimmer          FF_KidsRoom_Light           "Lumini"           <light>              (FF_KidsRoom, gLight)              
 Number          FF_KidsRoom_Heating         "Incalzire"        <heating>            (FF_KidsRoom, gHeating)            
-Number          FF_KidsRoom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_KidsRoom, gTemperature)        
+Number          FF_KidsRoom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_KidsRoom, gTemperature) { channel="knx:device:bridge:ff_mdt_2fold_children:temperature" }       
 Dimmer          FF_KidsRoom_Blind           "Jaluzele"         <blinds>             (FF_KidsRoom, gBlind)              
-Switch          FF_KidsRoom_Power           "Prize"            <poweroutlet>        (FF_KidsRoom, gPower)              
-Dimmer          FF_Office_Light             "Lumini"           <light>              (FF_Office, gLight)                
-Number          FF_Office_Heating           "Incalzire"        <heating>            (FF_Office, gHeating)              
-Number          FF_Office_Temperature       "Temperatura [%.1f °C]"      <temperature>        (FF_Office, gTemperature)          
-Switch          FF_Office_Power             "Prize"            <poweroutlet>        (FF_Office, gPower)                
-Dimmer          FF_Office_Blind             "Jaluzele"         <blinds>             (FF_Office, gBlind)                
+Switch          FF_KidsRoom_Power           "Prize"            <poweroutlet>        (FF_KidsRoom, gPower)    
+
+//////////////////////////////////////
+// FF Office
+//////////////////////////////////////
+
+Switch          FF_Office_Light             "Lumini [%s]"           <light>                      (FF_Office, gLight) { channel="knx:device:bridge:ff_mdt_4xdimmer:channelB" }                
+Switch          FF_Office_WallLamp          "Aplica"           <light>                      (FF_Office, gLight) { channel="knx:device:bridge:ff_siemens_switch:channelC" }                
+Rollershutter   FF_Office_Blind_Window      "Rulou Geam [%d %%]"         <rollershutter>    (FF_Office, gShutter) { channel="knx:device:bridge:ff_mdt_shutter:channelC" }      
+Rollershutter   FF_Office_Blind_Door        "Rulou Usa [%d %%]"         <rollershutter>     (FF_Office, gShutter)  { channel="knx:device:bridge:ff_mdt_shutter:channelD" }     
+Number          FF_Office_Temperature       "Temperatura [%.1f °C]"      <temperature>      (FF_Office, gTemperature) { channel="knx:device:bridge:ff_mdt_glass_smart_office:temperature" }           
+Number          FF_Office_Heating           "Incalzire"        <heating>                    (FF_Office, gHeating)              
+
+//////////////////////////////////////
+// FF Bath
+////////////////////////////////////// 
+
 Switch          FF_Bathroom_Light           "Lumini"           <light>              (FF_Bathroom, gLight)              
 Number          FF_Bathroom_Heating         "Incalzire"        <heating>            (FF_Bathroom, gHeating)            
-Number          FF_Bathroom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_Bathroom, gTemperature)        
+Number          FF_Bathroom_Temperature     "Temperatura [%.1f °C]"      <temperature>        (FF_Bathroom, gTemperature) { channel="knx:device:bridge:ff_mdt_1fold_bath:temperature" }        
 Switch          FF_Bathroom_Power           "Prize"            <poweroutlet>        (FF_Bathroom, gPower)              
 Switch          FF_Wardrobe_Light           "Lumini"           <light>              (FF_Wardrobe, gLight)              
-Switch          FF_Stairwell_Light          "Lumini"           <light>              (FF_Stairwell, gLight)             
+Switch          FF_Stairwell_Light          "Lumini"           <light>              (FF_Stairwell, gLight)         
 
-DateTime        GF_SWITCH_LIVING_DATETIME   "[%1$tA, %1$td.%1$tm.%1$tY %1$tT]" {channel="ntp:ntp:local:dateTime,knx:device:bridge:gf_mdt_glass_sensor:datetime"}
+//////////////////////////////////////
+// Other info
+//////////////////////////////////////
+Switch          HEAT_GFPump                 "Pompa Parter [%s]"         <pump>              (Heating, gPump) { channel="knx:device:bridge:gf_siemens_switch:channelE" }        
+Switch          HEAT_FFPump                 "Pompa Etaj [%s]"           <pump>              (Heating, gPump) { channel="knx:device:bridge:gf_siemens_switch:channelH" }         
+
+//////////////////////////////////////
+// Other info
+//////////////////////////////////////
+
+DateTime        GF_SWITCH_LIVING_DATETIME   "[%1$tA, %1$td.%1$tm.%1$tY %1$tT]" {channel="ntp:ntp:local:dateTime,knx:device:bridge:ff_mdt_glass_smart_office:datetime"}
 DateTime        SunsetTime                  "Apus [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:set#start" }
 DateTime        SunriseTime                 "Rasarit [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:rise#end" }
 Number          SunElevation                "Elevatia Soarelui [%.1f °]"  <sun>  (Astro) { channel="astro:sun:home:position#elevation" }
 
-Switch          DayModeSwitch                { channel="knx:device:bridge:gf_mdt_glass_sensor:dayMode" }
-
-Number          GF_Temperature   "Temperatura [%.1f °C]"      <temperature> { channel="knx:device:bridge:gf_mdt_glass_sensor:temperature" }      
+Switch          DayModeSwitch                { channel="knx:device:bridge:ff_mdt_glass_smart_office:dayMode" }
 
 Group:Switch:OR(ON, OFF)           gLight         "Lumini"            <light>           (Home)
 Group:Switch:OR(ON, OFF)           gPower         "Priza"             <poweroutlet>     (Home)
@@ -115,3 +135,4 @@ Group:Number:AVG                   gHeating       "Incalzire"         <heating> 
 Group:Number                       gTemperature   "Temperatura [%.1f °C]"       <temperature>     (Home)
 Group:Rollershutter:OR(UP, DOWN)   gShutter       "Rulouri"           <rollershutter>   (Home)
 Group:Dimmer                       gBlind         "Jaluzele"          <blinds>          (Home)
+Group:Switch                       gPump          "Pompa"             <pump>            (Home)

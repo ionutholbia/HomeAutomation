@@ -1,14 +1,19 @@
 sitemap casa_noastra label="Casa Noastra" {
     Frame label="Parter" icon="groundfloor" {
+
+
         Group item=GF_LivingRoom
         Group item=GF_Dining
         Group item=GF_Kitchen
-        Group item=GF_Toilet
-        Group item=GF_Corridor
-        Group item=GF_Garage
-        Group item=GF_Stairwell
+
+
+        Default item=GF_Entrance_Light
+        Default item=GF_Corridor_Light
+        Default item=GF_Toilet_Light
+        Default item=GF_Stairwell_Light
         Default item=GF_Temperature
-    }
+        Default item=GF_Heating
+    }   
 
     Frame label="Etaj" icon="firstfloor" {
         Group item=FF_FamilyRoom
@@ -19,6 +24,11 @@ sitemap casa_noastra label="Casa Noastra" {
         Group item=FF_Wardrobe
         Group item=FF_Stairwell
     }
+
+    Frame label="Diagnoza" {
+        Group item=Heating
+    }
+
     Frame label="Alte informatii" {
         Default item=GF_SWITCH_LIVING_DATETIME label="Data"
         Default item=SunsetTime label="Apusul"
