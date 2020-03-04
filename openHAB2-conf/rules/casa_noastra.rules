@@ -57,7 +57,16 @@ when
 then
     setFFTemp = updateSetpoint.apply(FF_Temp_Setpoint_Shift, setFFTemp)
     logInfo("temperature", "FF Setpoint: {}", setFFTemp)
+    sendCommand(FF_Heating, setFFTemp)
+end
 
+
+rule "FF Update Current Setpoint"
+when
+	Item FF_Heating received update
+then
+    setFFTemp = FF_Heating.state
+    logInfo("temperature", "FFTemperature change: {}", setFFTemp)
     sendCommand(FF_Temp_Current_Setpoint, setFFTemp)
     analyzeTemperature.apply(HEAT_FFPump, FF_FamilyRoom_Temperature, setFFTemp)
 end
@@ -76,21 +85,16 @@ then
 
     setGFTemp = updateSetpoint.apply(GF_Temp_Setpoint_Shift, setGFTemp)
     logInfo("temperature", "GF Setpoint: {}", setGFTemp)
+    sendCommand(GF_Heating, setGFTemp)
+end
+
+rule "GF Update Current Setpoint"
+when
+	Item GF_Heating received update
+then
+    setGFTemp = GF_Heating.state
+    logInfo("temperature", "DFTemperature change: {}", setGFTemp)
 
     sendCommand(GF_Temp_Current_Setpoint, setGFTemp)
     analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setGFTemp)
 end
-
-/*
-rule "Dining Hue 1"
-when
-	Item GF_Dining_Hue1_Dimmer received update
-then
-    if (! (GF_Dining_Hue1_Dimmer.state instanceof Number))
-    {
-        return;
-    }
-    val dimmerValue = GF_Dining_Hue1_Dimmer.state as Number  
-    logInfo("hue", "DIMMING STATE: " + dimmerValue)
-end
-*/

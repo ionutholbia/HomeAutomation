@@ -11,7 +11,7 @@ Group           FF_Bedroom                  "Dormitor Matrimonial"  <bedroom>   
 Group           FF_KidsRoom                 "Dormitor Copii"        <girl_3>        (Home, FF)
 Group           FF_Office                   "Birou"            <office>             (Home, FF)
 Group           FF_Bathroom                 "Baie"             <bath>               (Home, FF)
-Group           Heating                     "Incalzire"        <heating>            (Home)
+Group           Heating                     "Pompe incalzire"  <pump>               (Home)
 
 //////////////////////////////////////
 // GF Lining room
@@ -47,18 +47,21 @@ Rollershutter  GF_Kitchen_Shutter          "Rulou [%d %%]"     <rollershutter>  
 
 Switch          GF_Stairwell_Light  "Lumini Scari"               <qualityofservice>         
 Number          GF_Temperature      "Temperatura [%.1f °C]"      <temperature>  { channel="knx:device:bridge:gf_mdt_push_smart_living:temperature" }    
-Number          GF_Heating          "Incalzire"                  <heating>                  
+Number          GF_Heating          "Incalzire [%.1f °C]"        <heating>                  
 Switch          GF_Toilet_Light     "Toaleta"                    <light>  ["Lighting"] { channel="knx:device:bridge:gf_siemens_switch:channelA" }         
 Switch          GF_Entrance_Light   "Intrare"                    <light>  ["Lighting"] { channel="knx:device:bridge:gf_siemens_switch:channelD" }
 Switch          GF_Corridor_Light   "Hol"                        <light>  ["Lighting"] { channel="knx:device:bridge:gf_siemens_switch:channelC" }
+
+Number          GF_Temp_Setpoint_Shift      { channel="knx:device:bridge:gf_mdt_push_smart_living:tempSetpointShift" }       
+Number          GF_Temp_Current_Setpoint    { channel="knx:device:bridge:gf_mdt_push_smart_living:tempCurrentSetpoint" }  
 
 //////////////////////////////////////
 // FF Fam Room
 //////////////////////////////////////
 
 Switch          FF_FamilyRoom_Light         "Spoturi"                   <light>              (FF_FamilyRoom, gLight) ["Lighting"] { channel="knx:device:bridge:ff_siemens_switch:channelF" }           
-Number          FF_FamilyRoom_Heating       "Incalzire"                 <heating>            (FF_FamilyRoom, gHeating)          
-Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"     <temperature>        (FF_FamilyRoom, gTemperature) { channel="knx:device:bridge:ff_mdt_push_smart_fam:temperature" }      
+Number          FF_FamilyRoom_Heating       "Incalzire [%.1f °C]"       <heating>            (FF_FamilyRoom, gHeating)          
+Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"     <temperature>        (FF_FamilyRoom, gTemperature) { channel="knx:device:bridge:ff_mdt_push_smart_fam:temperature" }         
 
 //////////////////////////////////////
 // FF MBed
@@ -67,7 +70,7 @@ Number          FF_FamilyRoom_Temperature   "Temperatura [%.1f °C]"     <temper
 Switch          FF_Bedroom_Light            "Lumini"           <light>              (FF_Bedroom, gLight) ["Lighting"] { channel="knx:device:bridge:ff_siemens_switch:channelH" }                
 Rollershutter   FF_Bedroom_Blind            "Jaluzele  [%d %%]"         <rollershutter>      (FF_Bedroom, gShutter) ["WindowCovering"] { channel="knx:device:bridge:ff_mdt_shutter:channelA" }  
 Number          FF_Bedroom_Heating          "Incalzire"        <heating>            (FF_Bedroom, gHeating)             
-Number          FF_Bedroom_Temperature      "Temperatura [%.1f °C]"      <temperature>        (FF_Bedroom, gTemperature) ["CurrentTemperature"] { channel="knx:device:bridge:ff_mdt_push_smart_mbed:temperature" }         
+Number          FF_Bedroom_Temperature      "Temperatura [%.1f °C]"      <temperature>        (FF_Bedroom, gTemperature) { channel="knx:device:bridge:ff_mdt_push_smart_mbed:temperature" }         
 
 //////////////////////////////////////
 // FF Children
@@ -104,7 +107,10 @@ Number          FF_Bathroom_Temperature     "Temperatura [%.1f °C]"     <temper
 Switch          FF_Stairwell_Light         "Scari"               <light>         
 Switch          FF_Dressing_Light          "Dressing"            <light> ["Lighting"] { channel="knx:device:bridge:ff_siemens_switch:channelA" }        
 Switch          FF_Corridor_Light          "Coridor"             <light> ["Lighting"] { channel="knx:device:bridge:ff_siemens_switch:channelG" }        
+Number          FF_Heating                 "Incalzire [%.1f °C]" <heating>                  
 
+Number          FF_Temp_Setpoint_Shift      { channel="knx:device:bridge:ff_mdt_glass_smart_office:tempSetpointShift" }       
+Number          FF_Temp_Current_Setpoint    { channel="knx:device:bridge:ff_mdt_glass_smart_office:tempCurrentSetpoint"}  
 
 //////////////////////////////////////
 // Heat pumps
@@ -112,14 +118,6 @@ Switch          FF_Corridor_Light          "Coridor"             <light> ["Light
 Switch          HEAT_GFPump                 "Pompa Parter [%s]"         <pump>  (Heating, gPump)    { channel="knx:device:bridge:gf_siemens_switch:channelE" }        
 Switch          HEAT_FFPump                 "Pompa Etaj [%s]"           <pump>  (Heating, gPump)    { channel="knx:device:bridge:gf_siemens_switch:channelH" }         
 
-//////////////////////////////////////
-// Temperature handling
-//////////////////////////////////////
-Number          FF_Temp_Setpoint_Shift      { channel="knx:device:bridge:ff_mdt_glass_smart_office:tempSetpointShift" }       
-Number          FF_Temp_Current_Setpoint    { channel="knx:device:bridge:ff_mdt_glass_smart_office:tempCurrentSetpoint" }       
-
-Number          GF_Temp_Setpoint_Shift      { channel="knx:device:bridge:gf_mdt_push_smart_living:tempSetpointShift" }       
-Number          GF_Temp_Current_Setpoint    { channel="knx:device:bridge:gf_mdt_push_smart_living:tempCurrentSetpoint" }   
 //////////////////////////////////////
 // Other info
 //////////////////////////////////////
