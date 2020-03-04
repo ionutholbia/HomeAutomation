@@ -1,8 +1,8 @@
 Bridge knx:ip:bridge [ 
     ipAddress="192.168.2.151", 
     type="TUNNEL", 
-    localSourceAddr="1.1.254"
-    //useNAT=true
+    localSourceAddr="1.1.254",
+    autoReconnectPeriod=3
 ] {
 
 //////////////////////////////////////
@@ -21,23 +21,25 @@ Bridge knx:ip:bridge [
         address="1.1.1",
         fetch=true
     ] {
-        Type switch        : channelA   "L. Dressing"           [ ga="1/1/0" ]
-        Type switch        : channelB   "Lampa Perete Dorm 2"   [ ga="1/1/2" ]
-        Type switch        : channelC   "Lampa Perete Dorm 3"   [ ga="1/1/4" ]
-        Type switch        : channelD   "L. Baie"               [ ga="1/1/6" ]
-        Type switch        : channelE   "L. Casa Scari"         [ ga="1/1/8" ]
-        Type switch        : channelF   "Living 7 Spoturi"      [ ga="1/1/10"]
-        Type switch        : channelG   "Hol 2 Spoturi"         [ ga="0/2/2" ]
-        Type switch        : channelH   "L. Dorm 1"             [ ga="0/2/2" ]
+        Type switch        : channelA   "L. Dressing"           [ ga="1/1/0+<1/1/1" ]
+        Type switch        : channelB   "Lampa Perete Dorm 2"   [ ga="1/1/2+<1/1/3" ]
+        Type switch        : channelC   "Lampa Perete Dorm 3"   [ ga="1/1/4+<1/1/5" ]
+        Type switch        : channelD   "L. Baie"               [ ga="1/1/6+<1/1/7" ]
+        Type switch        : channelE   "L. Casa Scari"         [ ga="1/1/8+<1/1/9" ]
+        Type switch        : channelF   "Living 7 Spoturi"      [ ga="1/1/10+<1/1/11"]
+        Type switch        : channelG   "Hol 2 Spoturi"         [ ga="1/1/12+<1/1/13" ]
+        Type switch        : channelH   "L. Dorm 1"             [ ga="1/1/14+<1/1/15" ]
     }
 
     Thing device ff_mdt_glass_smart_office "FF MDT Glass Smart Office"[
         address="1.1.6",
         fetch=true
     ] {
-        Type number             : temperature   "TempSensor"        [ ga="1/2/0" ]
-        Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/3/22" ]
-        Type switch             : dayMode       "DayMode"           [ ga="<0/3/23" ]
+        Type switch             : tempSetpointShift     "Temp Setpoint Shift"           [ ga="1/2/2" ]
+        Type number             : tempCurrentSetpoint   "Temp Current Setpoint"         [ ga="1/2/1" ]
+        Type number             : temperature           "TempSensor"                    [ ga="1/2/0" ]
+        Type datetime-control   : datetime              "DateTimeSender"                [ ga="19.001:0/3/22" ]
+        Type switch             : dayMode               "DayMode"                       [ ga="<0/3/23" ]
     }
 
     Thing device ff_mdt_push_smart_mbed "FF MDT Push Smart MBed"[
@@ -78,10 +80,10 @@ Bridge knx:ip:bridge [
         address="1.1.10",
         fetch=true
     ] {
-        Type rollershutter : channelA "Dorm 1" [ upDown="1/3/0", stopMove="1/3/1", position="1/3/12" ]
-        Type rollershutter : channelB "Dorm 2" [ upDown="1/3/3", stopMove="1/3/4", position="1/3/13" ]
-        Type rollershutter : channelC "Dorm 3 Geam" [ upDown="1/3/6", stopMove="1/3/7", position="1/3/14" ]
-        Type rollershutter : channelD "Dorm 3 Usa" [ upDown="1/3/9", stopMove="1/3/10", position="1/3/15" ]
+        Type rollershutter : channelA "Dorm 1" [ upDown="1/3/0", stopMove="1/3/1", position="1/3/16+<1/3/12" ]
+        Type rollershutter : channelB "Dorm 2" [ upDown="1/3/3", stopMove="1/3/4", position="1/3/17+<1/3/13" ]
+        Type rollershutter : channelC "Dorm 3 Geam" [ upDown="1/3/6", stopMove="1/3/7", position="1/3/18+<1/3/14" ]
+        Type rollershutter : channelD "Dorm 3 Usa" [ upDown="1/3/9", stopMove="1/3/10", position="1/3/19+<1/3/15" ]
     }
 
 //////////////////////////////////////
@@ -92,11 +94,11 @@ Bridge knx:ip:bridge [
         address="1.1.12",
         fetch=true
     ] {
-        Type rollershutter : channelAB "Dining Geam" [ upDown="0/1/0", stopMove="0/1/1", position="0/1/2" ]
-        Type rollershutter : channelCD "Living Geam" [ upDown="0/1/3", stopMove="0/1/4", position="0/1/5" ]
-        Type rollershutter : channelEF "Dining Usa" [ upDown="0/1/6", stopMove="0/1/7", position="0/1/8" ]
-        Type rollershutter : channelGH "Living Deschidere" [ upDown="0/1/9", stopMove="0/1/16", position="0/1/17" ]
-        Type rollershutter : channelIJ "Bucatarie" [ upDown="0/1/18", stopMove="0/1/19", position="0/1/20" ]
+        Type rollershutter : channelAB "Dining Geam" [ upDown="0/1/0", stopMove="0/1/1", position="0/1/21+<0/1/2" ]
+        Type rollershutter : channelCD "Living Geam" [ upDown="0/1/3", stopMove="0/1/4", position="0/1/22+<0/1/5" ]
+        Type rollershutter : channelEF "Dining Usa" [ upDown="0/1/6", stopMove="0/1/7", position="0/1/23+<0/1/8" ]
+        Type rollershutter : channelGH "Living Deschidere" [ upDown="0/1/9", stopMove="0/1/16", position="0/1/24+<0/1/17" ]
+        Type rollershutter : channelIJ "Bucatarie" [ upDown="0/1/18", stopMove="0/1/19", position="0/1/25+<0/1/20" ]
         Type switch        : channelK  "L. Living"            [ ga="0/1/10+<0/1/11" ]
         Type switch        : channelL  "L. Dining"            [ ga="0/1/12+<0/1/13" ]
         Type switch        : channelM  "L. Bucatarie"         [ ga="0/1/14+<0/1/15" ]
@@ -120,6 +122,8 @@ Bridge knx:ip:bridge [
         address="1.1.17",
         fetch=true
     ] {
+        Type switch             : tempSetpointShift     "Temp Setpoint Shift"           [ ga="0/0/2" ]
+        Type number             : tempCurrentSetpoint   "Temp Current Setpoint"         [ ga="0/0/3" ]
         Type number             : temperature   "TempSensor"        [ ga="0/0/1" ]
         Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/3/22" ]
         Type switch             : dayMode       "DayMode"           [ ga="<0/3/23" ]

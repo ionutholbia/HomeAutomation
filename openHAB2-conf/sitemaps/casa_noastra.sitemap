@@ -1,12 +1,8 @@
 sitemap casa_noastra label="Casa Noastra" {
     Frame label="Parter" icon="groundfloor" {
-
-
         Group item=GF_LivingRoom
         Group item=GF_Dining
         Group item=GF_Kitchen
-
-
         Default item=GF_Entrance_Light
         Default item=GF_Corridor_Light
         Default item=GF_Toilet_Light
@@ -21,8 +17,9 @@ sitemap casa_noastra label="Casa Noastra" {
         Group item=FF_KidsRoom
         Group item=FF_Office
         Group item=FF_Bathroom
-        Group item=FF_Wardrobe
-        Group item=FF_Stairwell
+        Default item=FF_Stairwell_Light
+        Default item=FF_Dressing_Light
+        Default item=FF_Corridor_Light
     }
 
     Frame label="Diagnoza" {
