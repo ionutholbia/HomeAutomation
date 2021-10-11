@@ -1,0 +1,140 @@
+Bridge knx:ip:bridge [ 
+    ipAddress="192.168.2.151", 
+    type="TUNNEL", 
+    localSourceAddr="1.1.254",
+    autoReconnectPeriod=3
+] {
+
+//////////////////////////////////////
+// FF
+//////////////////////////////////////
+
+    Thing device ff_mdt_4xdimmer "FF MDT Dimming"[
+        address="1.1.2",
+        fetch=true
+    ] {
+        Type switch        : channelA   "L. Dorm 2"      [ ga="1/0/1" ]
+        Type switch        : channelB   "L. Dorm 3"      [ ga="1/0/6" ]
+    }
+
+    Thing device ff_siemens_switch "FF Siemens Switch"[
+        address="1.1.1",
+        fetch=true
+    ] {
+        Type switch        : channelA   "L. Dressing"           [ ga="1/1/0+<1/1/1" ]
+        Type switch        : channelB   "Lampa Perete Dorm 2"   [ ga="1/1/2+<1/1/3" ]
+        Type switch        : channelC   "Lampa Perete Dorm 3"   [ ga="1/1/4+<1/1/5" ]
+        Type switch        : channelD   "L. Baie"               [ ga="1/1/6+<1/1/7" ]
+        Type switch        : channelE   "L. Casa Scari"         [ ga="1/1/8+<1/1/9" ]
+        Type switch        : channelF   "Living 7 Spoturi"      [ ga="1/1/10+<1/1/11"]
+        Type switch        : channelG   "Hol 2 Spoturi"         [ ga="1/1/12+<1/1/13" ]
+        Type switch        : channelH   "L. Dorm 1"             [ ga="1/1/14+<1/1/15" ]
+    }
+
+    Thing device ff_mdt_glass_smart_office "FF MDT Glass Smart Office"[
+        address="1.1.6",
+        fetch=true
+    ] {
+        Type switch             : tempSetpointShift     "Temp Setpoint Shift"           [ ga="1/2/2" ]
+        Type number             : tempCurrentSetpoint   "Temp Current Setpoint"         [ ga="1/2/1" ]
+        Type number             : temperature           "TempSensor"                    [ ga="1/2/0" ]
+        Type datetime-control   : datetime              "DateTimeSender"                [ ga="19.001:0/3/22" ]
+        Type switch             : dayMode               "DayMode"                       [ ga="<0/3/23" ]
+    }
+
+    Thing device ff_mdt_push_smart_mbed "FF MDT Push Smart MBed"[
+        address="1.1.5",
+        fetch=true
+    ] {
+        Type number             : temperature   "TempSensor"        [ ga="1/6/0" ]
+        Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/3/22" ]
+        Type switch             : dayMode       "DayMode"           [ ga="0/3/23" ]
+    }
+
+    Thing device ff_mdt_push_smart_fam "FF MDT Push Smart Fam"[
+        address="1.1.11",
+        fetch=true
+    ] {
+        Type number             : temperature   "TempSensor"        [ ga="1/7/0" ]
+        Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/3/22" ]
+        Type switch             : dayMode       "DayMode"           [ ga="0/3/23" ]
+    }
+
+    Thing device ff_mdt_2fold_children "FF MDT 2 Fold Children"[
+        address="1.1.9",
+        fetch=true        
+    ] {
+        Type number             : temperature   "TempSensor"        [ ga="1/4/0" ]
+        Type switch             : dayMode       "DayMode"           [ ga="0/3/23" ]
+    }
+
+    Thing device ff_mdt_1fold_bath "FF MDT 1 Fold Bath"[
+        address="1.1.7",
+        fetch=true
+    ] {
+        Type number             : temperature   "TempSensor"        [ ga="1/5/0" ]
+        Type switch             : dayMode       "DayMode"           [ ga="0/3/23" ]
+    }
+
+    Thing device ff_mdt_shutter "MDT FF Shutter Actuator 4-fold"[
+        address="1.1.10",
+        fetch=true
+    ] {
+        Type rollershutter : channelA "Dorm 1" [ upDown="1/3/0", stopMove="1/3/1", position="1/3/16+<1/3/12" ]
+        Type rollershutter : channelB "Dorm 2" [ upDown="1/3/3", stopMove="1/3/4", position="1/3/17+<1/3/13" ]
+        Type rollershutter : channelC "Dorm 3 Geam" [ upDown="1/3/6", stopMove="1/3/7", position="1/3/18+<1/3/14" ]
+        Type rollershutter : channelD "Dorm 3 Usa" [ upDown="1/3/9", stopMove="1/3/10", position="1/3/19+<1/3/15" ]
+    }
+
+//////////////////////////////////////
+// GF
+//////////////////////////////////////
+
+    Thing device gf_mdt_universal "MDT GF Universal"[
+        address="1.1.12",
+        fetch=true
+    ] {
+        Type rollershutter : channelAB "Dining Geam" [ upDown="0/1/0", stopMove="0/1/1", position="0/1/21+<0/1/2" ]
+        Type rollershutter : channelCD "Living Geam" [ upDown="0/1/3", stopMove="0/1/4", position="0/1/22+<0/1/5" ]
+        Type rollershutter : channelEF "Dining Usa" [ upDown="0/1/6", stopMove="0/1/7", position="0/1/23+<0/1/8" ]
+        Type rollershutter : channelGH "Living Deschidere" [ upDown="0/1/9", stopMove="0/1/16", position="0/1/24+<0/1/17" ]
+        Type rollershutter : channelIJ "Bucatarie" [ upDown="0/1/18", stopMove="0/1/19", position="0/1/25+<0/1/20" ]
+        Type switch        : channelK  "L. Living"            [ ga="0/1/10+<0/1/11" ]
+        Type switch        : channelL  "L. Dining"            [ ga="0/1/12+<0/1/13" ]
+        Type switch        : channelM  "L. Bucatarie"         [ ga="0/1/14+<0/1/15" ]
+    }
+
+    Thing device gf_siemens_switch "GF Siemens Switch"[
+        address="1.1.13",
+        fetch=true
+    ] {
+        Type switch        : channelA   "L. Baie"               [ ga="0/2/0+<0/2/1" ]
+        Type switch        : channelB   "Lampi Living"          [ ga="0/2/2+<0/2/3" ]
+        Type switch        : channelC   "L. Coridor"            [ ga="0/2/4+<0/2/5" ]
+        Type switch        : channelD   "L. Intrare"            [ ga="0/2/6+<0/2/7" ]
+        Type switch        : channelE   "Pompa Parter"          [ ga="0/2/8+<0/2/9" ]
+        Type switch        : channelF   "Priza Sus"             [ ga="0/2/10+<0/2/11"]
+        Type switch        : channelG   "Liber"                 [ ga="0/2/12+<0/2/13" ]
+        Type switch        : channelH   "Pompa Etaj"            [ ga="0/2/14+<0/2/15" ]
+    }
+
+    Thing device gf_mdt_push_smart_living "GF MDT Push Smart Living"[
+        address="1.1.17",
+        fetch=true
+    ] {
+        Type switch             : tempSetpointShift     "Temp Setpoint Shift"           [ ga="0/0/2" ]
+        Type number             : tempCurrentSetpoint   "Temp Current Setpoint"         [ ga="0/0/3" ]
+        Type number             : temperature   "TempSensor"        [ ga="0/0/1" ]
+        Type datetime-control   : datetime      "DateTimeSender"    [ ga="19.001:0/3/22" ]
+        Type switch             : dayMode       "DayMode"           [ ga="0/3/23" ]
+    }
+}
+
+/*
+Bridge hue:bridge:1         "Hue Bridge"     [ ipAddress="192.168.2.30" ] {
+    0210 diningBulb1        "Dining Lamp 1"        @ "Dining"      [ lightId="1" ]
+    0210 diningBulb2        "Dining Lamp 2"        @ "Dining"      [ lightId="2" ]
+}*/
+
+astro:sun:home  [ geolocation="47.097712, 27.631192", interval=300]
+astro:moon:home [ geolocation="47.097712, 27.631192", interval=300]
