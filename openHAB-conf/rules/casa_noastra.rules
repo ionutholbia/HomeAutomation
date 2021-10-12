@@ -97,3 +97,19 @@ then
     sendCommand(GF_Temp_Current_Setpoint, setGFTemp)
     analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setGFTemp)
 end
+
+
+rule "Check Heating items"
+when
+	Time cron "0 0/1 * * * ?"
+then
+    if(GF_Heating.state == NULL) {
+        logInfo("temperature", "GF_Heating is NULL. Setting temp to: {}", setGFTemp)
+        sendCommand(GF_Heating, setGFTemp)
+    }
+
+    if(FF_Heating.state == NULL) {
+        logInfo("temperature", "FF_Heating is NULL. Setting temp to: {}", setFFTemp)
+        sendCommand(FF_Heating, setFFTemp)
+    }
+end
