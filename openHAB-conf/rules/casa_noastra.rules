@@ -1,5 +1,5 @@
-var Number setFFTemp = 21
-var Number setGFTemp = 21
+var Number setFFTemp = 17
+var Number setGFTemp = 17
 
 val analyzeTemperature = [ GenericItem pump, GenericItem temperatureItem, Number currentSetpoint | 
     val currentTemp = temperatureItem.state
