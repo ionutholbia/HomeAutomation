@@ -8,7 +8,7 @@ sitemap casa_noastra label="Casa Noastra" {
         Default item=GF_Toilet_Light
         Default item=GF_Stairwell_Light
         Default item=GF_Temperature
-        Setpoint item=GF_Heating minValue=17.0 step=0.1
+        Setpoint item=GF_Heating minValue=10.0 step=0.1
     }   
 
     Frame label="Etaj" icon="firstfloor" {
@@ -20,7 +20,7 @@ sitemap casa_noastra label="Casa Noastra" {
         Default item=FF_Stairwell_Light
         Default item=FF_Dressing_Light
         Default item=FF_Corridor_Light
-        Setpoint item=FF_Heating minValue=17.0 step=0.1
+        Setpoint item=FF_Heating minValue=10.0 step=0.1
     }
 
     Frame label="Sistem incalzire" {
