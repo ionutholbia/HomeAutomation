@@ -1,0 +1,8 @@
+Strategies {
+        everyHour : "0 0 * * * ?"
+        everyDay  : "0 0 0 * * ?"
+}
+
+Items {
+  HEAT_AntiFreeze, FF_Temp_Current_Setpoint, GF_Temp_Current_Setpoint : strategy = everyChange, restoreOnStartup
+}

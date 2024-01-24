@@ -113,10 +113,11 @@ Number          FF_Temp_Setpoint_Shift      { channel="knx:device:bridge:ff_mdt_
 Number          FF_Temp_Current_Setpoint    { channel="knx:device:bridge:ff_mdt_glass_smart_office:tempCurrentSetpoint"}  
 
 //////////////////////////////////////
-// Heat pumps
+// Control incalzire
 //////////////////////////////////////
 Switch          HEAT_GFPump                 "Pompa Parter [%s]"         <pump>  (Heating, gPump)    { channel="knx:device:bridge:gf_siemens_switch:channelE" }        
 Switch          HEAT_FFPump                 "Pompa Etaj [%s]"           <pump>  (Heating, gPump)    { channel="knx:device:bridge:gf_siemens_switch:channelH" }         
+Switch          HEAT_AntiFreeze             "Anti-inghet [%s]"          <snow>    
 
 //////////////////////////////////////
 // Other info
