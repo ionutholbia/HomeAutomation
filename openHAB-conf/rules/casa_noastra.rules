@@ -124,15 +124,26 @@ then
         sendCommand(GF_Heating, antiFreezeTemp)
         sendCommand(FF_Heating, antiFreezeTemp)
     } else {
-        logInfo("temperature", "Checking heating: GF State: {}, FF State: {}", GF_Heating.state, FF_Heating.state)
+        logInfo("temperature", "Sanity check temp: GF: {} < {} : {} | FF: {} < {} : {}", GF_Heating.state, GF_Temperature.state, setGFCurrentTemp, FF_Heating.state, FF_FamilyRoom_Temperature.state, setFFCurrentTemp)
+
         if(GF_Heating.state == NULL || GF_Heating.state < setGFCurrentTemp) {
-            logInfo("temperature", "GF_Heating is NULL. Setting temp to: {}", setGFCurrentTemp)
+            logInfo("temperature", "GF_Heating is NULL or lower. Setting temp to: {}", setGFCurrentTemp)
             sendCommand(GF_Heating, setGFCurrentTemp)
         }
 
         if(FF_Heating.state == NULL || FF_Heating.state < setFFCurrentTemp) {
-            logInfo("temperature", "FF_Heating is NULL. Setting temp to: {}", setFFCurrentTemp)
+            logInfo("temperature", "FF_Heating is NULL or lower. Setting temp to: {}", setFFCurrentTemp)
             sendCommand(FF_Heating, setFFCurrentTemp)
+        }
+
+        if(GF_Heating.state > setGFCurrentTemp) {
+            logInfo("temperature", "setGFCurrentTemp is lower. Setting currrent temp to: {}", GF_Heating.state)
+            sendCommand(GF_Heating, GF_Heating.state)
+        }
+
+        if(FF_Heating.state > setFFCurrentTemp) {
+            logInfo("temperature", "setFFCurrentTemp is lower. Setting currrent temp to: {}", FF_Heating.state)
+            sendCommand(FF_Heating, FF_Heating.state)
         }
     }
 end
