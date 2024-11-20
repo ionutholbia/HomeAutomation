@@ -7,7 +7,7 @@ val analyzeTemperature = [ GenericItem pump, GenericItem temperatureItem, Number
     val currentTemp = temperatureItem.state
 
     var pumpState = pump.state
-    logInfo("temperature", "PUMP State: {}, CurrentTemp: {},  CurrentTemp: {}", pumpState, currentSetpoint, currentTemp)
+    logInfo("temperature", "PUMP State: {}, SetTemp: {},  CurrentTemp: {}", pumpState, currentSetpoint, currentTemp)
 
     if(currentTemp < currentSetpoint && pumpState == OFF) {
         logInfo("temperature", "Switching ON PUMP.")
@@ -94,7 +94,7 @@ when
 	Item GF_Heating received update
 then
     setGFCurrentTemp = GF_Heating.state
-    logInfo("temperature", "DFTemperature change: {}", setGFCurrentTemp)
+    logInfo("temperature", "GFTemperature change: {}", setGFCurrentTemp)
 
     sendCommand(GF_Temp_Current_Setpoint, setGFCurrentTemp)
     analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setGFCurrentTemp)
@@ -124,12 +124,13 @@ then
         sendCommand(GF_Heating, antiFreezeTemp)
         sendCommand(FF_Heating, antiFreezeTemp)
     } else {
+        logInfo("temperature", "Checking heating: GF State: {}, FF State: {}", GF_Heating.state, FF_Heating.state)
         if(GF_Heating.state == NULL || GF_Heating.state < setGFCurrentTemp) {
             logInfo("temperature", "GF_Heating is NULL. Setting temp to: {}", setGFCurrentTemp)
             sendCommand(GF_Heating, setGFCurrentTemp)
         }
 
-        if(FF_Heating.state == NULL || GF_Heating.state < setFFCurrentTemp) {
+        if(FF_Heating.state == NULL || FF_Heating.state < setFFCurrentTemp) {
             logInfo("temperature", "FF_Heating is NULL. Setting temp to: {}", setFFCurrentTemp)
             sendCommand(FF_Heating, setFFCurrentTemp)
         }
