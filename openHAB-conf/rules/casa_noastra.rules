@@ -1,4 +1,5 @@
-var Number setCurrentTemp = 17
+var Number setGFCurrentTemp = 17
+var Number setFFCurrentTemp = 17
 var Number antiFreezeTemp = 7
 var Number defaultWinterTemp = 20
 
@@ -6,7 +7,7 @@ val analyzeTemperature = [ GenericItem pump, GenericItem temperatureItem, Number
     val currentTemp = temperatureItem.state
 
     var pumpState = pump.state
-    logInfo("temperature", "PUMP State: {}, setCurrentTemp: {},  CurrentTemp: {}", pumpState, currentSetpoint, currentTemp)
+    logInfo("temperature", "PUMP State: {}, CurrentTemp: {},  CurrentTemp: {}", pumpState, currentSetpoint, currentTemp)
 
     if(currentTemp < currentSetpoint && pumpState == OFF) {
         logInfo("temperature", "Switching ON PUMP.")
@@ -48,16 +49,16 @@ rule "FF temperature updated"
 when
 	Item FF_FamilyRoom_Temperature received update
 then
-    analyzeTemperature.apply(HEAT_FFPump, FF_FamilyRoom_Temperature, setCurrentTemp)
+    analyzeTemperature.apply(HEAT_FFPump, FF_FamilyRoom_Temperature, setFFCurrentTemp)
 end
 
 rule "FF temperature SetPoint"
 when
 	Item FF_Temp_Setpoint_Shift received update
 then
-    setCurrentTemp = updateSetpoint.apply(FF_Temp_Setpoint_Shift, setCurrentTemp)
-    logInfo("temperature", "FF Setpoint: {}", setCurrentTemp)
-    sendCommand(FF_Heating, setCurrentTemp)
+    setFFCurrentTemp = updateSetpoint.apply(FF_Temp_Setpoint_Shift, setFFCurrentTemp)
+    logInfo("temperature", "FF Setpoint: {}", setFFCurrentTemp)
+    sendCommand(FF_Heating, setFFCurrentTemp)
 end
 
 
@@ -65,17 +66,17 @@ rule "FF Update Current Setpoint"
 when
 	Item FF_Heating received update
 then
-    setCurrentTemp = FF_Heating.state
-    logInfo("temperature", "FFTemperature change: {}", setCurrentTemp)
-    sendCommand(FF_Temp_Current_Setpoint, setCurrentTemp)
-    analyzeTemperature.apply(HEAT_FFPump, FF_FamilyRoom_Temperature, setCurrentTemp)
+    setFFCurrentTemp = FF_Heating.state
+    logInfo("temperature", "FFTemperature change: {}", setFFCurrentTemp)
+    sendCommand(FF_Temp_Current_Setpoint, setFFCurrentTemp)
+    analyzeTemperature.apply(HEAT_FFPump, FF_FamilyRoom_Temperature, setFFCurrentTemp)
 end
 
 rule "GF temperature updated"
 when
 	Item GF_Temperature received update
 then
-    analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setCurrentTemp)
+    analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setGFCurrentTemp)
 end
 
 rule "GF temperature SetPoint"
@@ -83,20 +84,20 @@ when
 	Item GF_Temp_Setpoint_Shift received update
 then
 
-    setCurrentTemp = updateSetpoint.apply(GF_Temp_Setpoint_Shift, setCurrentTemp)
-    logInfo("temperature", "GF Setpoint: {}", setCurrentTemp)
-    sendCommand(GF_Heating, setCurrentTemp)
+    setGFCurrentTemp = updateSetpoint.apply(GF_Temp_Setpoint_Shift, setGFCurrentTemp)
+    logInfo("temperature", "GF Setpoint: {}", setGFCurrentTemp)
+    sendCommand(GF_Heating, setGFCurrentTemp)
 end
 
 rule "GF Update Current Setpoint"
 when
 	Item GF_Heating received update
 then
-    setCurrentTemp = GF_Heating.state
-    logInfo("temperature", "DFTemperature change: {}", setCurrentTemp)
+    setGFCurrentTemp = GF_Heating.state
+    logInfo("temperature", "DFTemperature change: {}", setGFCurrentTemp)
 
-    sendCommand(GF_Temp_Current_Setpoint, setCurrentTemp)
-    analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setCurrentTemp)
+    sendCommand(GF_Temp_Current_Setpoint, setGFCurrentTemp)
+    analyzeTemperature.apply(HEAT_GFPump, GF_Temperature, setGFCurrentTemp)
 end
 
 rule "Antifreeze update"
@@ -108,7 +109,7 @@ then
         sendCommand(GF_Heating, antiFreezeTemp)
         sendCommand(FF_Heating, antiFreezeTemp)
     } else {
-        logInfo("temperature", "AntiFreeze is OFF. Setting temp to: {}", setCurrentTemp)
+        logInfo("temperature", "AntiFreeze is OFF. Setting temp to: {}", defaultWinterTemp)
         sendCommand(GF_Heating, defaultWinterTemp)
         sendCommand(FF_Heating, defaultWinterTemp)
     }
@@ -123,14 +124,14 @@ then
         sendCommand(GF_Heating, antiFreezeTemp)
         sendCommand(FF_Heating, antiFreezeTemp)
     } else {
-        if(GF_Heating.state == NULL || GF_Heating.state < setCurrentTemp) {
-            logInfo("temperature", "GF_Heating is NULL. Setting temp to: {}", setCurrentTemp)
-            sendCommand(GF_Heating, setCurrentTemp)
+        if(GF_Heating.state == NULL || GF_Heating.state < setGFCurrentTemp) {
+            logInfo("temperature", "GF_Heating is NULL. Setting temp to: {}", setGFCurrentTemp)
+            sendCommand(GF_Heating, setGFCurrentTemp)
         }
 
-        if(FF_Heating.state == NULL || GF_Heating.state < setCurrentTemp) {
-            logInfo("temperature", "FF_Heating is NULL. Setting temp to: {}", setCurrentTemp)
-            sendCommand(FF_Heating, setCurrentTemp)
+        if(FF_Heating.state == NULL || GF_Heating.state < setFFCurrentTemp) {
+            logInfo("temperature", "FF_Heating is NULL. Setting temp to: {}", setFFCurrentTemp)
+            sendCommand(FF_Heating, setFFCurrentTemp)
         }
     }
 end
